@@ -19,7 +19,7 @@ const IS_PROD = process.env.NODE_ENV === 'production' || process.env.RAILWAY_ENV
 
 // ===== RUTAS PERSISTENTES =====
 const DATA_DIR = IS_PROD ? '/app/data' : path.join(__dirname, 'data');
-const UPLOADS_DIR = IS_PROD ? '/app/uploads' : path.join(__dirname, 'uploads');
+const UPLOADS_DIR = IS_PROD ? '/app/data/uploads' : path.join(__dirname, 'uploads');
 const BASE_FILES_DIR = path.join(UPLOADS_DIR, 'base-files');
 const STUDENT_FILES_DIR = path.join(UPLOADS_DIR, 'student-files');
 const DB_PATH = path.join(DATA_DIR, 'examenes.db');
