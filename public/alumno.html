@@ -4,22 +4,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Examen · Simulación</title>
+<title>Examen</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.5;-webkit-user-select:none;-moz-user-select:none;user-select:none}
-.topbar{background:#1a1a2e;color:#fff;padding:12px 24px;display:flex;align-items:center;justify-content:center;position:sticky;top:0;z-index:100}
-.topbar h1{font-size:17px;font-weight:600;display:flex;align-items:center;gap:8px}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.5;-webkit-user-select:none;user-select:none}
+.topbar{background:#1a1a2e;color:#fff;padding:12px 24px;text-align:center;position:sticky;top:0;z-index:100}
+.topbar h1{font-size:17px;font-weight:600}
 .container{max-width:800px;margin:0 auto;padding:24px}
 .card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:24px;margin-bottom:20px}
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-size:12px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
-.form-group input{width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:7px;font-size:14px;font-family:inherit;background:#fafafa;transition:.15s}
-.form-group input:focus{outline:none;border-color:#4f46e5;background:#fff}
-.btn{padding:10px 20px;border:none;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s;display:inline-flex;align-items:center;gap:6px}
+.form-group input,.form-group select{width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:7px;font-size:14px;font-family:inherit;background:#fafafa}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:#4f46e5;background:#fff}
+.btn{padding:10px 20px;border:none;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px}
 .btn-primary{background:#4f46e5;color:#fff}.btn-primary:hover{background:#4338ca}
 .btn-success{background:#059669;color:#fff}.btn-success:hover{background:#047857}
-.btn-outline{background:transparent;border:1px solid #d1d5db;color:#374151}.btn-outline:hover{background:#f3f4f6}
 .btn-sm{padding:6px 12px;font-size:12px}
 .btn-block{width:100%;justify-content:center}
 .btn:disabled{opacity:.5;cursor:not-allowed}
@@ -29,11 +28,8 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#1a
 .exam-header h2{font-size:20px;font-weight:700;margin-bottom:4px}
 .exam-header p{font-size:13px;opacity:.85}
 .problem-box{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:20px;margin-bottom:16px}
-.problem-box h3{font-size:15px;font-weight:700;color:#92400e;margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.problem-box .problem-text{font-size:14px;color:#1a1a2e;white-space:pre-wrap;line-height:1.7}
-.alert{padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.alert-info{background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af}
-.alert-danger{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+.problem-box h3{font-size:15px;font-weight:700;color:#92400e;margin-bottom:8px}
+.problem-box .pt{font-size:14px;white-space:pre-wrap;line-height:1.7}
 .q-block{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin-bottom:12px}
 .q-num{font-size:11px;font-weight:700;color:#4f46e5;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
 .q-type-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;margin-left:8px}
@@ -41,26 +37,25 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#1a
 .q-type-multiple{background:#fce7f3;color:#9d174d}
 .q-type-vf{background:#fef3c7;color:#92400e}
 .option-group{display:flex;flex-direction:column;gap:8px}
-.option-label{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border:2px solid #e5e7eb;border-radius:8px;cursor:pointer;transition:.15s;font-size:14px}
+.option-label{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border:2px solid #e5e7eb;border-radius:8px;cursor:pointer;font-size:14px}
 .option-label:hover{border-color:#c7d2fe;background:#f5f3ff}
 .option-label input[type="radio"]{accent-color:#4f46e5;width:16px;height:16px}
 .option-label.selected{border-color:#4f46e5;background:#eef2ff}
 .option-letter{font-weight:700;color:#4f46e5;min-width:20px}
 .vf-group{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.vf-label{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;background:#fff;border:2px solid #e5e7eb;border-radius:8px;cursor:pointer;transition:.15s;font-size:15px;font-weight:600}
+.vf-label{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;background:#fff;border:2px solid #e5e7eb;border-radius:8px;cursor:pointer;font-size:15px;font-weight:600}
 .vf-label:hover{border-color:#c7d2fe}
 .vf-label input[type="radio"]{accent-color:#4f46e5;width:16px;height:16px}
 .vf-label.selected{border-color:#4f46e5;background:#eef2ff}
 .file-info{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:6px}
-.fi-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;background:#dbeafe}
 .fi-details{flex:1;text-align:left}
 .fi-name{font-size:13px;font-weight:600}
 .fi-size{font-size:11px;color:#888}
-.upload-zone{border:2px dashed #d1d5db;border-radius:10px;padding:20px;text-align:center;cursor:pointer;transition:.2s;background:#fafafa;margin-top:12px}
+.upload-zone{border:2px dashed #d1d5db;border-radius:10px;padding:20px;text-align:center;cursor:pointer;background:#fafafa;margin-top:12px}
 .upload-zone:hover{border-color:#4f46e5;background:#f5f3ff}
 .upload-zone.has-files{border-color:#059669;background:#ecfdf5}
 .score-circle{width:120px;height:120px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;border:6px solid}
-.score-num{font-size:32px;font-weight:700;font-family:'SF Mono','Cascadia Code',monospace}
+.score-num{font-size:32px;font-weight:700;font-family:monospace}
 .score-label{font-size:11px;font-weight:600;text-transform:uppercase}
 .score-high{border-color:#059669;color:#059669;background:#ecfdf5}
 .score-mid{border-color:#d97706;color:#d97706;background:#fffbeb}
@@ -71,13 +66,17 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#1a
 .badge-incorrect{background:#fee2e2;color:#991b1b}
 .timer-bar{position:sticky;top:56px;z-index:90;background:#1e293b;color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #334155}
 .timer-left{display:flex;align-items:center;gap:10px;font-size:13px}
-.timer-exam-name{font-weight:600}
-.timer-clock{font-family:'SF Mono','Cascadia Code',monospace;font-size:28px;font-weight:700;letter-spacing:2px;padding:4px 16px;border-radius:8px;background:rgba(255,255,255,.1)}
+.timer-clock{font-family:monospace;font-size:28px;font-weight:700;letter-spacing:2px;padding:4px 16px;border-radius:8px;background:rgba(255,255,255,.1)}
 .timer-clock.t-green{color:#4ade80}.timer-clock.t-yellow{color:#fbbf24;background:rgba(251,191,36,.15)}.timer-clock.t-red{color:#f87171;background:rgba(248,113,113,.2)}
 .timer-progress-wrap{height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:4px;overflow:hidden;width:200px}
 .timer-progress{height:100%;border-radius:2px;transition:width 1s linear}
 .tp-green{background:#4ade80}.tp-yellow{background:#fbbf24}.tp-red{background:#f87171}
 .timer-label{font-size:11px;color:rgba(255,255,255,.6);text-transform:uppercase}
+.alert{padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:16px}
+.alert-info{background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af}
+.variant-btn{padding:14px 20px;border:2px solid #e5e7eb;border-radius:10px;background:#fff;cursor:pointer;font-size:18px;font-weight:700;font-family:inherit;transition:.15s;min-width:70px}
+.variant-btn:hover{border-color:#c7d2fe;background:#f5f3ff}
+.variant-btn.selected{border-color:#4f46e5;background:#eef2ff;color:#4f46e5}
 .spinner{display:inline-block;width:20px;height:20px;border:3px solid rgba(255,255,255,.3);border-radius:50%;border-top-color:#fff;animation:spin .6s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}.timer-blink{animation:blink .8s ease-in-out infinite}
@@ -86,9 +85,9 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#1a
 </style>
 </head>
 <body>
-<div class="topbar"><h1>🎓 Examen · Simulación 2° Parcial</h1></div>
+<div class="topbar"><h1>Examen - Simulacion 2do Parcial</h1></div>
 <div class="timer-bar" id="timer-bar" style="display:none">
-  <div class="timer-left">⏱️ <span class="timer-exam-name" id="timer-exam-name"></span></div>
+  <div class="timer-left"><span id="timer-exam-name"></span></div>
   <div style="display:flex;align-items:center;gap:8px">
     <div><div class="timer-clock t-green" id="timer-clock">00:00</div><div class="timer-progress-wrap"><div class="timer-progress tp-green" id="timer-progress" style="width:100%"></div></div></div>
     <div class="timer-label">Tiempo<br>restante</div>
@@ -96,102 +95,151 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#1a
 </div>
 
 <div class="container">
+  <!-- LOGIN -->
   <div id="login-section">
     <div class="card">
       <div class="login-box">
         <div class="lock-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#4f46e5" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
         <h2 style="font-size:18px;margin-bottom:4px">Acceso al Examen</h2>
-        <p style="font-size:13px;color:#666;margin-bottom:16px">Ingresa tu nombre exacto y la contraseña proporcionada por tu profesor.</p>
-        <div class="form-group" style="text-align:left"><label>Nombre Completo</label><input type="text" id="inp-name" placeholder="Tu nombre completo (como lo registró el profesor)" autocomplete="off"></div>
-        <div class="form-group" style="text-align:left"><label>Contraseña del Examen</label><input type="password" id="inp-pwd" placeholder="Contraseña" autocomplete="off"></div>
-        <button class="btn btn-primary btn-block" id="btn-login" onclick="doLogin()">🔓 Ingresar al Examen</button>
+        <p style="font-size:13px;color:#666;margin-bottom:16px">Ingresa tu ID (matricula), selecciona tu variante e ingresa la contrasena.</p>
+
+        <div class="form-group" style="text-align:left"><label>Examen</label>
+          <select id="inp-group"><option value="">Cargando examenes...</option></select>
+        </div>
+
+        <div class="form-group" style="text-align:left"><label>Tu ID / Matricula</label>
+          <input type="text" id="inp-code" placeholder="Ej: A01234567" autocomplete="off">
+        </div>
+
+        <div class="form-group" style="text-align:left"><label>Variante del Examen</label>
+          <div style="display:flex;gap:10px;justify-content:center;margin-top:4px" id="variant-btns"></div>
+        </div>
+
+        <div class="form-group" style="text-align:left"><label>Contrasena de la Variante</label>
+          <input type="password" id="inp-pwd" placeholder="Contrasena" autocomplete="off">
+        </div>
+
+        <button class="btn btn-primary btn-block" id="btn-login" onclick="doLogin()">Ingresar al Examen</button>
         <p id="login-error" style="color:#dc2626;font-size:13px;margin-top:12px;display:none"></p>
       </div>
     </div>
   </div>
+
   <div id="exam-section" style="display:none"></div>
   <div id="result-section" style="display:none"></div>
 </div>
 
 <script>
-let examData=null,timerInterval=null,timerTotal=0,timerRemain=0,autoSubmitted=false,studentFiles=[],submitting=false;
+let examData=null,timerInterval=null,timerTotal=0,timerRemain=0,autoSubmitted=false,studentFiles=[],submitting=false,selectedVariant='';
 
-document.addEventListener('keydown',e=>{
-  if(!examData)return;
-  if(e.key==='PrintScreen'){e.preventDefault();alert('⚠️ Capturas no permitidas.')}
-  if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['S','s','I','i','C','c'].includes(e.key)){e.preventDefault();alert('⚠️ Acción no permitida.')}
-  if((e.ctrlKey||e.metaKey)&&['p','P'].includes(e.key)){e.preventDefault();alert('⚠️ Imprimir no permitido.')}
-});
+// Anti-screenshot
+document.addEventListener('keydown',e=>{if(!examData)return;if(e.key==='PrintScreen'){e.preventDefault();alert('Capturas no permitidas.')}if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['S','s','I','i','C','c'].includes(e.key)){e.preventDefault()}if((e.ctrlKey||e.metaKey)&&['p','P'].includes(e.key)){e.preventDefault()}});
 document.addEventListener('contextmenu',e=>{if(examData)e.preventDefault()});
-document.addEventListener('visibilitychange',()=>{
-  if(document.hidden&&timerInterval)document.title='⚠️ ¡Regresa al examen!';
-  else document.title='Examen · Simulación';
-});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&timerInterval)document.title='Regresa al examen!';else document.title='Examen'});
+
+function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function selOpt(l){const p=l.closest('.option-group,.vf-group');if(p)p.querySelectorAll('.option-label,.vf-label').forEach(x=>x.classList.remove('selected'));l.classList.add('selected')}
+
+// Cargar grupos activos
+async function loadGroups(){
+  try{
+    const res=await fetch('/api/active-groups');
+    const groups=await res.json();
+    const sel=document.getElementById('inp-group');
+    if(!groups.length){sel.innerHTML='<option value="">No hay examenes disponibles</option>';return}
+    sel.innerHTML='<option value="">-- Selecciona el examen --</option>';
+    groups.forEach(g=>{sel.innerHTML+='<option value="'+g.group_id+'">'+esc(g.name)+' ('+esc(g.subject)+')</option>'});
+    sel.onchange=()=>loadVariants(sel.value);
+  }catch(e){console.error(e)}
+}
+
+async function loadVariants(groupId){
+  const area=document.getElementById('variant-btns');
+  selectedVariant='';
+  if(!groupId){area.innerHTML='';return}
+  try{
+    const res=await fetch('/api/variants/'+groupId);
+    const vars=await res.json();
+    if(!vars.length){area.innerHTML='<p style="color:#999;font-size:13px">Sin variantes</p>';return}
+    area.innerHTML=vars.map(v=>'<button class="variant-btn" onclick="pickVariant(this,\''+v.variant+'\')">'+v.variant+'</button>').join('');
+  }catch(e){area.innerHTML=''}
+}
+
+function pickVariant(btn,v){
+  document.querySelectorAll('.variant-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedVariant=v;
+}
 
 async function doLogin(){
-  const name=document.getElementById('inp-name').value.trim();
+  const groupId=document.getElementById('inp-group').value;
+  const code=document.getElementById('inp-code').value.trim();
   const pwd=document.getElementById('inp-pwd').value.trim();
   const err=document.getElementById('login-error');
   const btn=document.getElementById('btn-login');
   err.style.display='none';
-  if(!name||!pwd){err.textContent='Ingresa tu nombre y contraseña.';err.style.display='block';return}
+
+  if(!groupId){err.textContent='Selecciona el examen.';err.style.display='block';return}
+  if(!code){err.textContent='Ingresa tu ID / matricula.';err.style.display='block';return}
+  if(!selectedVariant){err.textContent='Selecciona tu variante (A, B, C o D).';err.style.display='block';return}
+  if(!pwd){err.textContent='Ingresa la contrasena.';err.style.display='block';return}
+
   btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Verificando...';
   try{
-    const res=await fetch('/api/student/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,password:pwd})});
+    const res=await fetch('/api/student/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({studentCode:code,groupId:groupId,variant:selectedVariant,password:pwd})});
     const data=await res.json();
-    if(!res.ok){err.textContent=data.error||'Error al ingresar.';err.style.display='block';btn.disabled=false;btn.innerHTML='🔓 Ingresar al Examen';return}
+    if(!res.ok){err.textContent=data.error||'Error.';err.style.display='block';btn.disabled=false;btn.innerHTML='Ingresar al Examen';return}
     examData=data;
     showExam();
-  }catch(e){err.textContent='Error de conexión. Verifica tu internet.';err.style.display='block';btn.disabled=false;btn.innerHTML='🔓 Ingresar al Examen'}
+  }catch(e){err.textContent='Error de conexion.';err.style.display='block';btn.disabled=false;btn.innerHTML='Ingresar al Examen'}
 }
 
 function showExam(){
   document.getElementById('login-section').style.display='none';
   const sec=document.getElementById('exam-section');
   sec.style.display='block';
-  startTimer(examData.timeLimit,examData.examName);
+  startTimer(examData.timeLimit,examData.examName+' - Var '+examData.variant);
 
-  let h='<div class="exam-header"><h2>📝 '+esc(examData.examName)+'</h2><p>'+esc(examData.subject)+' · '+examData.questions.length+' preguntas · '+examData.totalPoints+' puntos · ⏱️ '+examData.timeLimit+' min</p><p style="margin-top:6px;font-size:12px;opacity:.7">Alumno: '+esc(examData.studentName)+'</p></div>';
+  let h='<div class="exam-header"><h2>'+esc(examData.examName)+' — Variante '+examData.variant+'</h2><p>'+esc(examData.subject)+' | '+examData.questions.length+' preguntas | '+examData.totalPoints+' pts | '+examData.timeLimit+' min</p><p style="margin-top:6px;font-size:12px;opacity:.7">ID: '+esc(examData.studentCode)+'</p></div>';
 
   if(examData.problemTitle||examData.problemDescription){
-    h+='<div class="problem-box"><h3>📋 '+esc(examData.problemTitle||'Enunciado del Problema')+'</h3><div class="problem-text">'+esc(examData.problemDescription||'')+'</div></div>';
+    h+='<div class="problem-box"><h3>'+esc(examData.problemTitle||'Enunciado')+'</h3><div class="pt">'+esc(examData.problemDescription||'')+'</div></div>';
   }
 
   if(examData.baseFiles&&examData.baseFiles.length){
-    h+='<div class="card"><h3 style="font-size:15px;font-weight:600;margin-bottom:12px">📎 Archivos del Examen — Descarga para trabajar</h3>';
+    h+='<div class="card"><h3 style="font-size:15px;font-weight:600;margin-bottom:12px">Archivos del Examen</h3>';
     examData.baseFiles.forEach(f=>{
       const sz=f.file_size>1048576?(f.file_size/1048576).toFixed(1)+' MB':(f.file_size/1024).toFixed(0)+' KB';
-      h+='<div class="file-info"><div class="fi-icon">📄</div><div class="fi-details"><div class="fi-name">'+esc(f.original_name)+'</div><div class="fi-size">'+sz+'</div></div><a href="/api/files/base/'+f.id+'" class="btn btn-primary btn-sm" download>⬇️ Descargar</a></div>';
+      h+='<div class="file-info"><div style="font-size:18px">📄</div><div class="fi-details"><div class="fi-name">'+esc(f.original_name)+'</div><div class="fi-size">'+sz+'</div></div><a href="/api/files/base/'+f.id+'" class="btn btn-primary btn-sm" download>Descargar</a></div>';
     });
     h+='</div>';
   }
 
-  const TL={numerica:{icon:'🔢',label:'Numérica',cls:'q-type-numerica'},multiple:{icon:'🔘',label:'Opción Múlt.',cls:'q-type-multiple'},vf:{icon:'✅',label:'V/F',cls:'q-type-vf'}};
+  const TL={numerica:{icon:'#',label:'Numerica',cls:'q-type-numerica'},multiple:{icon:'O',label:'Opcion Mult.',cls:'q-type-multiple'},vf:{icon:'V',label:'V/F',cls:'q-type-vf'}};
 
   examData.questions.forEach((q,i)=>{
     const tl=TL[q.type]||TL.numerica;
-    h+='<div class="q-block"><div class="q-num">Pregunta '+q.num+' <span class="q-type-tag '+tl.cls+'">'+tl.icon+' '+tl.label+'</span><span style="float:right;font-size:11px;color:#888">'+q.points+' pts</span></div><div style="font-size:14px;font-weight:500;margin:8px 0 10px">'+esc(q.text)+'</div>';
+    h+='<div class="q-block"><div class="q-num">Pregunta '+q.num+' <span class="q-type-tag '+tl.cls+'">'+tl.label+'</span><span style="float:right;font-size:11px;color:#888">'+q.points+' pts</span></div><div style="font-size:14px;font-weight:500;margin:8px 0 10px">'+esc(q.text)+'</div>';
     if(q.type==='numerica'){
-      h+='<input type="number" step="any" id="ans-'+i+'" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;font-family:monospace" placeholder="Tu respuesta numérica">';
+      h+='<input type="number" step="any" id="ans-'+i+'" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;font-family:monospace" placeholder="Tu respuesta numerica">';
     }else if(q.type==='multiple'){
       h+='<div class="option-group">';
       ['A','B','C','D'].forEach(l=>{if(q.options&&q.options[l]&&q.options[l].trim())h+='<label class="option-label" onclick="selOpt(this)"><input type="radio" name="ans-'+i+'" value="'+l+'"><span class="option-letter">'+l+'.</span><span>'+esc(q.options[l])+'</span></label>'});
       h+='</div>';
     }else{
-      h+='<div class="vf-group"><label class="vf-label" onclick="selOpt(this)"><input type="radio" name="ans-'+i+'" value="Verdadero"> ✅ Verdadero</label><label class="vf-label" onclick="selOpt(this)"><input type="radio" name="ans-'+i+'" value="Falso"> ❌ Falso</label></div>';
+      h+='<div class="vf-group"><label class="vf-label" onclick="selOpt(this)"><input type="radio" name="ans-'+i+'" value="Verdadero"> Verdadero</label><label class="vf-label" onclick="selOpt(this)"><input type="radio" name="ans-'+i+'" value="Falso"> Falso</label></div>';
     }
     h+='</div>';
   });
 
-  h+='<div class="card"><h3 style="font-size:15px;font-weight:600;margin-bottom:8px">📤 Sube tus archivos de respuesta</h3><p style="font-size:13px;color:#666;margin-bottom:8px">Sube tu(s) archivo(s) de trabajo (.spfx, .xlsx, .pdf, etc.). Puedes subir 2 o más.</p><div class="upload-zone" id="upload-zone" onclick="document.getElementById(\'file-input\').click()" ondragover="event.preventDefault();this.style.borderColor=\'#4f46e5\'" ondragleave="this.style.borderColor=\'#d1d5db\'" ondrop="fileDrop(event)"><input type="file" id="file-input" style="display:none" multiple onchange="fileSelect(event)"><p style="font-size:14px;color:#666">📎 Arrastra archivos aquí o haz clic</p><p style="font-size:12px;color:#999">Cualquier formato</p></div><div id="file-list"></div></div>';
+  h+='<div class="card"><h3 style="font-size:15px;font-weight:600;margin-bottom:8px">Sube tus archivos de respuesta</h3><p style="font-size:13px;color:#666;margin-bottom:8px">Sube tu(s) archivo(s) (.spfx, .xlsx, .pdf, etc.)</p>';
+  h+='<div class="upload-zone" id="upload-zone" onclick="document.getElementById(\'file-input\').click()" ondragover="event.preventDefault();this.style.borderColor=\'#4f46e5\'" ondragleave="this.style.borderColor=\'#d1d5db\'" ondrop="fileDrop(event)"><input type="file" id="file-input" style="display:none" multiple onchange="fileSelect(event)"><p style="color:#666">Arrastra archivos o haz clic</p><p style="font-size:12px;color:#999">Cualquier formato</p></div><div id="file-list"></div></div>';
 
-  h+='<button class="btn btn-success btn-block" id="btn-submit" onclick="doSubmit(false)" style="font-size:16px;padding:14px;margin-bottom:40px">✅ Enviar Examen</button>';
+  h+='<button class="btn btn-success btn-block" id="btn-submit" onclick="doSubmit(false)" style="font-size:16px;padding:14px;margin-bottom:40px">Enviar Examen</button>';
   sec.innerHTML=h;
 }
 
-function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
-function selOpt(l){const p=l.closest('.option-group,.vf-group');if(p)p.querySelectorAll('.option-label,.vf-label').forEach(x=>x.classList.remove('selected'));l.classList.add('selected')}
-
+// Files
 function fileSelect(e){Array.from(e.target.files).forEach(f=>studentFiles.push(f));renderFiles()}
 function fileDrop(e){e.preventDefault();e.currentTarget.style.borderColor='#d1d5db';Array.from(e.dataTransfer.files).forEach(f=>studentFiles.push(f));renderFiles()}
 function removeFile(i){studentFiles.splice(i,1);renderFiles()}
@@ -201,16 +249,17 @@ function renderFiles(){
   zone.classList.add('has-files');
   list.innerHTML=studentFiles.map((f,i)=>{
     const sz=f.size>1048576?(f.size/1048576).toFixed(1)+' MB':(f.size/1024).toFixed(0)+' KB';
-    return'<div class="file-info" style="margin-top:6px"><div class="fi-icon">📄</div><div class="fi-details"><div class="fi-name">'+esc(f.name)+'</div><div class="fi-size">'+sz+'</div></div><button class="btn btn-sm" style="background:#dc2626;color:#fff;padding:4px 10px" onclick="removeFile('+i+')">✕</button></div>';
+    return '<div class="file-info" style="margin-top:6px"><div style="font-size:18px">📄</div><div class="fi-details"><div class="fi-name">'+esc(f.name)+'</div><div class="fi-size">'+sz+'</div></div><button class="btn btn-sm" style="background:#dc2626;color:#fff;padding:4px 10px" onclick="removeFile('+i+')">X</button></div>';
   }).join('');
 }
 
+// Timer
 function startTimer(min,name){
   timerTotal=min*60;timerRemain=timerTotal;autoSubmitted=false;
   document.getElementById('timer-bar').style.display='flex';
   document.getElementById('timer-exam-name').textContent=name;
   updT();
-  timerInterval=setInterval(()=>{timerRemain--;if(timerRemain<=0){timerRemain=0;clearInterval(timerInterval);timerInterval=null;updT();if(!autoSubmitted){autoSubmitted=true;alert('⏰ ¡Tiempo agotado! Tu examen se enviará automáticamente.');doSubmit(true)}return}updT()},1000);
+  timerInterval=setInterval(()=>{timerRemain--;if(timerRemain<=0){timerRemain=0;clearInterval(timerInterval);timerInterval=null;updT();if(!autoSubmitted){autoSubmitted=true;alert('Tiempo agotado! Tu examen se enviara automaticamente.');doSubmit(true)}return}updT()},1000);
 }
 function updT(){
   const ck=document.getElementById('timer-clock'),pg=document.getElementById('timer-progress');
@@ -224,6 +273,7 @@ function updT(){
 }
 function stopTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null}document.getElementById('timer-bar').style.display='none'}
 
+// Submit
 async function doSubmit(auto){
   if(submitting)return;
   if(!auto){
@@ -231,18 +281,17 @@ async function doSubmit(auto){
       if(examData.questions[i].type==='numerica'){const v=document.getElementById('ans-'+i);return!v||v.value===''}
       else{return!document.querySelector('input[name="ans-'+i+'"]:checked')}
     }).length;
-    if(unanswered>0&&!confirm('⚠️ Tienes '+unanswered+' pregunta(s) sin responder.\n\n¿Enviar de todos modos?'))return;
-    if(!confirm('¿Estás seguro de enviar tu examen? No podrás modificar tus respuestas después.'))return;
+    if(unanswered>0&&!confirm('Tienes '+unanswered+' pregunta(s) sin responder. Enviar de todos modos?'))return;
+    if(!confirm('Estas seguro de enviar? No podras modificar despues.'))return;
   }
   submitting=true;
   const btn=document.getElementById('btn-submit');
-  if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Enviando examen...';}
+  if(btn){btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Enviando...';}
 
   const answers=examData.questions.map((q,i)=>{
     if(q.type==='numerica'){const v=document.getElementById('ans-'+i);return v?v.value:''}
     else{const ch=document.querySelector('input[name="ans-'+i+'"]:checked');return ch?ch.value:null}
   });
-
   const timeUsed=timerTotal-timerRemain;
   stopTimer();
 
@@ -257,9 +306,9 @@ async function doSubmit(auto){
   try{
     const res=await fetch('/api/student/submit',{method:'POST',body:fd});
     const data=await res.json();
-    if(!res.ok){alert('Error: '+(data.error||'Intenta de nuevo.'));submitting=false;if(btn){btn.disabled=false;btn.innerHTML='✅ Enviar Examen';}return}
+    if(!res.ok){alert('Error: '+(data.error||'Intenta de nuevo.'));submitting=false;if(btn){btn.disabled=false;btn.innerHTML='Enviar Examen';}return}
     showResult(data,timeUsed,auto);
-  }catch(e){alert('Error de conexión. Verifica tu internet.');submitting=false;if(btn){btn.disabled=false;btn.innerHTML='✅ Enviar Examen';}}
+  }catch(e){alert('Error de conexion.');submitting=false;if(btn){btn.disabled=false;btn.innerHTML='Enviar Examen';}}
 }
 
 function showResult(data,timeUsed,auto){
@@ -269,19 +318,27 @@ function showResult(data,timeUsed,auto){
   const correct=data.results.filter(r=>r.correct).length;
   const m=Math.floor(timeUsed/60),s=timeUsed%60;
 
-  let h='<div class="card" style="text-align:center;padding:40px"><div style="width:64px;height:64px;background:#ecfdf5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg></div><h2 style="font-size:20px;margin-bottom:8px">¡Examen Enviado Exitosamente!</h2><p style="color:#666;font-size:14px">'+(auto?'⏰ Envío automático por tiempo agotado.':'Tu examen fue enviado y calificado correctamente.')+'</p><div class="score-circle '+gc+'" style="margin-top:24px"><span class="score-num">'+fg.toFixed(0)+'</span><span class="score-label">de 100</span></div><p style="font-size:15px;font-weight:600">Aciertos: '+correct+' de '+data.results.length+'</p><p style="font-size:13px;color:#666;margin-top:6px">⏱️ Tiempo: '+m+'m '+s+'s de '+examData.timeLimit+' min</p></div>';
+  let h='<div class="card" style="text-align:center;padding:40px"><h2 style="font-size:20px;margin-bottom:8px">Examen Enviado</h2><p style="color:#666;font-size:14px">'+(auto?'Envio automatico por tiempo agotado.':'Tu examen fue enviado correctamente.')+'</p>';
+  h+='<div class="score-circle '+gc+'" style="margin-top:24px"><span class="score-num">'+fg.toFixed(0)+'</span><span class="score-label">de 100</span></div>';
+  h+='<p style="font-size:15px;font-weight:600">Aciertos: '+correct+' de '+data.results.length+'</p>';
+  h+='<p style="font-size:13px;color:#666;margin-top:6px">Tiempo: '+m+'m '+s+'s | Variante: '+examData.variant+'</p></div>';
 
-  h+='<div class="card"><h3 style="font-size:15px;font-weight:600;margin-bottom:16px">📋 Detalle de tus respuestas</h3>';
+  h+='<div class="card"><h3 style="font-size:15px;font-weight:600;margin-bottom:16px">Detalle de Respuestas</h3>';
   data.results.forEach(r=>{
-    const badge=r.correct?'<span class="badge badge-correct">✅ Correcto</span>':'<span class="badge badge-incorrect">❌ Incorrecto</span>';
-    h+='<div class="result-detail"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><strong>Pregunta '+r.num+'</strong>'+badge+'</div><p style="font-size:13px;color:#555;margin-bottom:6px">'+esc(r.text)+'</p><p style="font-size:13px">📝 Tu respuesta: <strong>'+esc(r.studentAnswer)+'</strong></p><p style="font-size:13px">✅ Correcta: <strong>'+esc(r.correctAnswer)+'</strong></p><p style="font-size:12px;color:#888;margin-top:4px">'+r.earned+'/'+r.points+' puntos</p></div>';
+    const badge=r.correct?'<span class="badge badge-correct">Correcto</span>':'<span class="badge badge-incorrect">Incorrecto</span>';
+    h+='<div class="result-detail"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><strong>P'+r.num+'</strong>'+badge+'</div>';
+    h+='<p style="font-size:13px;color:#555;margin-bottom:6px">'+esc(r.text)+'</p>';
+    h+='<p style="font-size:13px">Tu respuesta: <strong>'+esc(r.studentAnswer)+'</strong></p>';
+    h+='<p style="font-size:13px">Correcta: <strong>'+esc(r.correctAnswer)+'</strong></p>';
+    h+='<p style="font-size:12px;color:#888;margin-top:4px">'+r.earned+'/'+r.points+' pts</p></div>';
   });
   h+='</div>';
-  h+='<div class="alert alert-info">✅ Tus respuestas y archivos fueron guardados. Puedes cerrar esta ventana.</div>';
+  h+='<div class="alert alert-info">Tus respuestas y archivos fueron guardados. Puedes cerrar esta ventana.</div>';
   sec.innerHTML=h;
 }
 
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.getElementById('login-section').style.display!=='none')doLogin()});
+loadGroups();
 </script>
 </body>
 </html>
