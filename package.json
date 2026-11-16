@@ -1,8 +1,8 @@
 
 {
   "name": "examen",
-  "version": "1.0.0",
-  "description": "Sistema de exámenes con servidor para Simulación 2do Parcial",
+  "version": "2.0.0",
+  "description": "Sistema de exámenes con variantes A/B/C/D - Simulación 2do Parcial",
   "main": "server.js",
   "engines": {
     "node": ">=18.0.0"
