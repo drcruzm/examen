@@ -15,21 +15,30 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#1a
 .topbar-nav button:hover{background:rgba(255,255,255,.1);color:#fff}
 .topbar-nav button.active{background:rgba(255,255,255,.15);color:#fff}
 .container{max-width:980px;margin:0 auto;padding:24px}
-.page{display:none}.page.active{display:block}
+.page{display:none}
+.page.active{display:block}
 .card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:24px;margin-bottom:20px}
 .card h2{font-size:17px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-size:12px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:7px;font-size:14px;font-family:inherit;background:#fafafa}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:#4f46e5;background:#fff}
+.form-group input,
+.form-group textarea,
+.form-group select{width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:7px;font-size:14px;font-family:inherit;background:#fafafa}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{outline:none;border-color:#4f46e5;background:#fff}
 .form-group textarea{resize:vertical;min-height:60px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .btn{padding:10px 20px;border:none;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px}
-.btn-primary{background:#4f46e5;color:#fff}.btn-primary:hover{background:#4338ca}
-.btn-success{background:#059669;color:#fff}.btn-success:hover{background:#047857}
-.btn-danger{background:#dc2626;color:#fff}.btn-danger:hover{background:#b91c1c}
-.btn-outline{background:transparent;border:1px solid #d1d5db;color:#374151}.btn-outline:hover{background:#f3f4f6}
+.btn-primary{background:#4f46e5;color:#fff}
+.btn-primary:hover{background:#4338ca}
+.btn-success{background:#059669;color:#fff}
+.btn-success:hover{background:#047857}
+.btn-danger{background:#dc2626;color:#fff}
+.btn-danger:hover{background:#b91c1c}
+.btn-outline{background:transparent;border:1px solid #d1d5db;color:#374151}
+.btn-outline:hover{background:#f3f4f6}
 .btn-sm{padding:6px 12px;font-size:12px}
 .btn-block{width:100%;justify-content:center}
 .btn:disabled{opacity:.5;cursor:not-allowed}
@@ -75,11 +84,20 @@ tr:hover td{background:#f9fafb}
 .score-low{border-color:#dc2626;color:#dc2626;background:#fef2f2}
 .spinner{display:inline-block;width:20px;height:20px;border:3px solid rgba(255,255,255,.3);border-radius:50%;border-top-color:#fff;animation:spin .6s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:600px){.form-row,.form-row-3{grid-template-columns:1fr}.topbar{flex-direction:column;gap:8px}.gs-grid{grid-template-columns:1fr 1fr}}
-@media print{.topbar,.btn,.topbar-nav{display:none!important}.page{display:block!important}.card{break-inside:avoid}}
+@media(max-width:600px){
+  .form-row,.form-row-3{grid-template-columns:1fr}
+  .topbar{flex-direction:column;gap:8px}
+  .gs-grid{grid-template-columns:1fr 1fr}
+}
+@media print{
+  .topbar,.btn,.topbar-nav{display:none!important}
+  .page{display:block!important}
+  .card{break-inside:avoid}
+}
 </style>
 </head>
 <body>
+
 <div class="topbar">
   <h1>Profesor - Sistema de Examenes</h1>
   <div class="topbar-nav">
@@ -88,29 +106,53 @@ tr:hover td{background:#f9fafb}
     <button onclick="showPage('calificaciones',this)">Calificaciones</button>
   </div>
 </div>
+
 <div class="container">
+
+  <!-- ========== PAGINA CREAR ========== -->
   <div class="page active" id="page-crear">
+
     <div class="card">
       <h2>Crear Nuevo Examen</h2>
       <div class="form-row">
-        <div class="form-group"><label>Nombre del Examen</label><input type="text" id="ex-name" placeholder="Ej: Examen 2do Parcial"></div>
-        <div class="form-group"><label>Materia</label><input type="text" id="ex-subject" value="Simulacion"></div>
+        <div class="form-group">
+          <label>Nombre del Examen</label>
+          <input type="text" id="ex-name" placeholder="Ej: Examen 2do Parcial">
+        </div>
+        <div class="form-group">
+          <label>Materia</label>
+          <input type="text" id="ex-subject" value="Simulacion">
+        </div>
       </div>
       <div class="form-row-3">
-        <div class="form-group"><label>Fecha</label><input type="date" id="ex-date"></div>
-        <div class="form-group"><label>Tolerancia (%)</label><input type="number" id="ex-tolerance" value="2" min="0" max="100" step="0.5"></div>
-        <div class="form-group"><label>Tiempo Limite (min)</label><input type="number" id="ex-time" value="60" min="1"></div>
+        <div class="form-group">
+          <label>Fecha</label>
+          <input type="date" id="ex-date">
+        </div>
+        <div class="form-group">
+          <label>Tolerancia (%)</label>
+          <input type="number" id="ex-tolerance" value="2" min="0" max="100" step="0.5">
+        </div>
+        <div class="form-group">
+          <label>Tiempo Limite (min)</label>
+          <input type="number" id="ex-time" value="60" min="1">
+        </div>
       </div>
     </div>
+
     <div class="card">
-      <h2>Variantes del Examen</h2>
-      <div class="alert alert-info">Cada variante tiene su propia contrasena, enunciado, preguntas y archivos. Puedes crear de 1 a 4 variantes (A, B, C, D).</div>
+      <h2>Variantes del Examen (A-Z)</h2>
+      <div class="alert alert-info">
+        Cada variante tiene su propia contrasena, enunciado, preguntas y archivos.
+        Puedes crear hasta 26 variantes (A-Z).
+      </div>
       <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
         <button class="btn btn-outline" onclick="addVariant()">+ Agregar Variante</button>
         <span id="var-count" style="font-size:13px;color:#666;align-self:center">0 variantes</span>
       </div>
       <div id="variants-container"></div>
     </div>
+
     <div class="card">
       <h2>Alumnos (por ID / Matricula)</h2>
       <div class="alert alert-info">Pega la lista de IDs o matriculas (uno por linea).</div>
@@ -121,43 +163,629 @@ tr:hover td{background:#f9fafb}
       </div>
       <div id="students-preview" style="margin-top:12px"></div>
     </div>
-    <button class="btn btn-success btn-block" id="btn-create" onclick="createExam()" style="font-size:16px;padding:14px">Crear Examen</button>
+
+    <button class="btn btn-success btn-block" id="btn-create" onclick="createExam()" style="font-size:16px;padding:14px">
+      Crear Examen
+    </button>
     <div id="create-result" style="margin-top:16px"></div>
+
   </div>
+
+  <!-- ========== PAGINA LISTA ========== -->
   <div class="page" id="page-lista">
     <div class="card">
       <h2>Examenes Creados</h2>
       <div id="exams-list"><div class="empty-state">Cargando...</div></div>
     </div>
   </div>
+
+  <!-- ========== PAGINA CALIFICACIONES ========== -->
   <div class="page" id="page-calificaciones">
     <div class="card">
       <h2>Calificaciones</h2>
       <div id="grades-area"><div class="empty-state">Cargando...</div></div>
     </div>
   </div>
+
 </div>
+
 <script>
-let variants=[],studentCodes=[];
-function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
-function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');document.querySelectorAll('.topbar-nav button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');if(id==='lista')loadExams();if(id==='calificaciones')loadGrades()}
-function addVariant(){if(variants.length>=4){alert('Maximo 4 variantes.');return}const letters=['A','B','C','D'];const used=variants.map(v=>v.variant);const next=letters.find(l=>!used.includes(l));if(!next)return;variants.push({variant:next,password:'',problemTitle:'',problemDescription:'',questions:[],files:[]});renderVariants()}
-function removeVariant(i){variants.splice(i,1);renderVariants()}
-function renderVariants(){document.getElementById('var-count').textContent=variants.length+' variante(s)';const c=document.getElementById('variants-container');if(!variants.length){c.innerHTML='<div class="empty-state">Agrega al menos una variante.</div>';return}const TL={numerica:{label:'Numerica',cls:'q-type-numerica'},multiple:{label:'Opcion Mult.',cls:'q-type-multiple'},vf:{label:'V/F',cls:'q-type-vf'}};c.innerHTML=variants.map((v,vi)=>{let h='<div class="var-section"><div class="var-header"><span style="background:#4f46e5;color:#fff;padding:2px 10px;border-radius:6px;font-size:16px">'+v.variant+'</span> Variante '+v.variant+'<button class="btn btn-sm btn-danger" style="margin-left:auto" onclick="removeVariant('+vi+')">Eliminar</button></div>';h+='<div class="form-group"><label>Contrasena Variante '+v.variant+'</label><input type="text" value="'+esc(v.password)+'" onchange="variants['+vi+'].password=this.value" placeholder="Contrasena para variante '+v.variant+'"></div>';h+='<div class="form-group"><label>Titulo del Problema</label><input type="text" value="'+esc(v.problemTitle)+'" onchange="variants['+vi+'].problemTitle=this.value" placeholder="Titulo del enunciado"></div>';h+='<div class="form-group"><label>Enunciado</label><textarea onchange="variants['+vi+'].problemDescription=this.value" rows="3" placeholder="Enunciado del problema...">'+esc(v.problemDescription)+'</textarea></div>';h+='<div class="form-group"><label>Archivos Variante '+v.variant+'</label><div class="file-upload-zone'+(v.files&&v.files.length?' has-files':'')+'" onclick="document.getElementById(\'vfile-'+vi+'\').click()"><input type="file" id="vfile-'+vi+'" style="display:none" multiple onchange="varFileSelect(event,'+vi+')"><p style="color:#666">Arrastra o haz clic</p></div>';if(v.files&&v.files.length){h+=v.files.map((f,fi)=>{const sz=f.size>1048576?(f.size/1048576).toFixed(1)+' MB':(f.size/1024).toFixed(0)+' KB';return'<div class="file-info"><div style="font-size:18px">F</div><div class="fi-details"><div class="fi-name">'+esc(f.name)+'</div><div class="fi-size">'+sz+'</div></div><button class="btn btn-sm btn-danger" onclick="removeVarFile('+vi+','+fi+')">X</button></div>'}).join('')}h+='</div>';h+='<label style="display:block;font-size:12px;font-weight:600;color:#555;text-transform:uppercase;margin:12px 0 8px">Preguntas Variante '+v.variant+'</label>';if(v.questions.length){h+=v.questions.map((q,qi)=>{const tl=TL[q.type]||TL.numerica;let qh='<div class="q-block"><button class="btn btn-sm btn-danger" style="position:absolute;top:6px;right:6px;padding:2px 8px" onclick="removeVarQ('+vi+','+qi+')">X</button>';qh+='<div class="q-num">P'+q.num+' <span class="q-type-tag '+tl.cls+'">'+tl.label+'</span></div>';qh+='<div class="form-row" style="margin-top:6px"><div class="form-group"><label>Pregunta</label><textarea onchange="variants['+vi+'].questions['+qi+'].text=this.value" rows="2" placeholder="Texto...">'+esc(q.text)+'</textarea></div><div class="form-group"><label>Puntos</label><input type="number" value="'+q.points+'" min="1" onchange="variants['+vi+'].questions['+qi+'].points=parseFloat(this.value)||0"></div></div>';qh+='<div style="margin-top:8px;padding:10px;background:#f0f2f5;border-radius:6px"><label style="font-size:11px;font-weight:700;color:#4f46e5;text-transform:uppercase;margin-bottom:6px;display:block">Respuesta Correcta</label>';if(q.type==='numerica'){qh+='<input type="number" step="any" value="'+q.answer+'" onchange="variants['+vi+'].questions['+qi+'].answer=parseFloat(this.value)||0" placeholder="Valor numerico">'}else if(q.type==='multiple'){qh+='<div class="form-group" style="margin-bottom:6px"><label>A</label><input type="text" value="'+esc(q.options.A)+'" onchange="variants['+vi+'].questions['+qi+'].options.A=this.value"></div>';qh+='<div class="form-group" style="margin-bottom:6px"><label>B</label><input type="text" value="'+esc(q.options.B)+'" onchange="variants['+vi+'].questions['+qi+'].options.B=this.value"></div>';qh+='<div class="form-group" style="margin-bottom:6px"><label>C</label><input type="text" value="'+esc(q.options.C)+'" onchange="variants['+vi+'].questions['+qi+'].options.C=this.value"></div>';qh+='<div class="form-group" style="margin-bottom:6px"><label>D</label><input type="text" value="'+esc(q.options.D)+'" onchange="variants['+vi+'].questions['+qi+'].options.D=this.value"></div>';qh+='<div class="form-group"><label>Correcta</label><select onchange="variants['+vi+'].questions['+qi+'].answer=this.value"><option value="A"'+(q.answer==='A'?' selected':'')+'>A</option><option value="B"'+(q.answer==='B'?' selected':'')+'>B</option><option value="C"'+(q.answer==='C'?' selected':'')+'>C</option><option value="D"'+(q.answer==='D'?' selected':'')+'>D</option></select></div>'}else{qh+='<select onchange="variants['+vi+'].questions['+qi+'].answer=this.value"><option value="Verdadero"'+(q.answer==='Verdadero'?' selected':'')+'>Verdadero</option><option value="Falso"'+(q.answer==='Falso'?' selected':'')+'>Falso</option></select>'}qh+='</div></div>';return qh}).join('')}else{h+='<div style="text-align:center;padding:10px;color:#999;font-size:13px">Sin preguntas</div>'}h+='<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><button class="btn btn-sm btn-outline" onclick="addVarQ('+vi+',\'numerica\')">+ Numerica</button><button class="btn btn-sm btn-outline" onclick="addVarQ('+vi+',\'multiple\')">+ Opcion Mult.</button><button class="btn btn-sm btn-outline" onclick="addVarQ('+vi+',\'vf\')">+ V/F</button></div></div>';return h}).join('')}
-function addVarQ(vi,type){const num=variants[vi].questions.length+1;variants[vi].questions.push({num:num,type:type,text:'',points:10,answer:type==='vf'?'Verdadero':type==='numerica'?0:'A',options:type==='multiple'?{A:'',B:'',C:'',D:''}:null});renderVariants()}
-function removeVarQ(vi,qi){variants[vi].questions.splice(qi,1);variants[vi].questions.forEach((q,j)=>q.num=j+1);renderVariants()}
-function varFileSelect(e,vi){Array.from(e.target.files).forEach(f=>variants[vi].files.push(f));renderVariants()}
-function removeVarFile(vi,fi){variants[vi].files.splice(fi,1);renderVariants()}
-function parseStudents(){const raw=document.getElementById('students-paste').value.trim();if(!raw){alert('Pega la lista de IDs.');return}studentCodes=raw.split('\n').map(l=>l.trim()).filter(l=>l.length>0);studentCodes=[...new Set(studentCodes)];document.getElementById('student-count').textContent=studentCodes.length+' alumnos';renderStudents()}
-function removeStu(i){studentCodes.splice(i,1);document.getElementById('student-count').textContent=studentCodes.length+' alumnos';renderStudents()}
-function renderStudents(){if(!studentCodes.length){document.getElementById('students-preview').innerHTML='';return}let h='<div class="table-wrap"><table><tr><th>#</th><th>ID / Matricula</th><th></th></tr>';studentCodes.forEach((c,i)=>{h+='<tr><td>'+(i+1)+'</td><td><code>'+esc(c)+'</code></td><td><button class="btn btn-sm btn-danger" onclick="removeStu('+i+')">X</button></td></tr>'});h+='</table></div>';document.getElementById('students-preview').innerHTML=h}
-async function createExam(){const name=document.getElementById('ex-name').value.trim();if(!name){alert('Nombre del examen requerido.');return}if(!variants.length){alert('Agrega al menos una variante.');return}for(let i=0;i<variants.length;i++){if(!variants[i].password.trim()){alert('Variante '+variants[i].variant+' sin contrasena.');return}if(!variants[i].questions.length){alert('Variante '+variants[i].variant+' sin preguntas.');return}for(let j=0;j<variants[i].questions.length;j++){if(!variants[i].questions[j].text.trim()){alert('Variante '+variants[i].variant+', pregunta '+(j+1)+' sin texto.');return}}}if(!studentCodes.length){alert('Agrega al menos un alumno.');return}const btn=document.getElementById('btn-create');btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Creando...';const fd=new FormData();fd.append('name',name);fd.append('subject',document.getElementById('ex-subject').value.trim()||'Simulacion');fd.append('tolerance',document.getElementById('ex-tolerance').value||'2');fd.append('timeLimit',document.getElementById('ex-time').value||'60');fd.append('examDate',document.getElementById('ex-date').value||'');fd.append('studentCodes',JSON.stringify(studentCodes));const varData=variants.map(v=>({variant:v.variant,password:v.password,problemTitle:v.problemTitle,problemDescription:v.problemDescription,questions:v.questions}));fd.append('variants',JSON.stringify(varData));variants.forEach(v=>{if(v.files){v.files.forEach(f=>{const renamed=new File([f],'VAR_'+v.variant+'_'+f.name,{type:f.type});fd.append('baseFiles',renamed)})}});try{const res=await fetch('/api/exams',{method:'POST',body:fd});const data=await res.json();if(!res.ok){alert('Error: '+(data.error||'Intenta de nuevo'));btn.disabled=false;btn.innerHTML='Crear Examen';return}let rh='<div class="alert alert-success">Examen creado!</div><div class="card"><h2>Resumen</h2><p style="font-size:13px;margin-bottom:8px">Liga alumnos:</p><div style="background:#f3f4f6;padding:10px;border-radius:8px;font-family:monospace;font-size:14px;margin-bottom:12px;word-break:break-all">'+window.location.origin+'/alumno</div><h3 style="font-size:14px;margin:12px 0 8px">Contrasenas:</h3><div class="table-wrap"><table><tr><th>Variante</th><th>Contrasena</th></tr>';data.variants.forEach(v=>{rh+='<tr><td style="font-weight:700;font-size:16px">'+v.variant+'</td><td><code style="background:#eef2ff;padding:2px 10px;border-radius:4px;font-size:15px;font-weight:700">'+esc(v.password)+'</code></td></tr>'});rh+='</table></div><p style="margin-top:8px;font-size:13px">Alumnos: '+data.students.length+'</p><button class="btn btn-primary" style="margin-top:8px" onclick="copyInfo()">Copiar Info</button></div>';document.getElementById('create-result').innerHTML=rh;window._createdInfo={url:window.location.origin+'/alumno',variants:data.variants,students:data.students};variants=[];studentCodes=[];document.getElementById('ex-name').value='';document.getElementById('students-paste').value='';document.getElementById('student-count').textContent='0 alumnos';document.getElementById('students-preview').innerHTML='';renderVariants();btn.disabled=false;btn.innerHTML='Crear Examen'}catch(e){alert('Error: '+e.message);btn.disabled=false;btn.innerHTML='Crear Examen'}}
-function copyInfo(){if(!window._createdInfo)return;const info=window._createdInfo;let txt='EXAMEN - Liga: '+info.url+'\n\nCONTRASENAS:\n';info.variants.forEach(v=>{txt+='Variante '+v.variant+': '+v.password+'\n'});txt+='\nALUMNOS: '+info.students.length+' registrados\n';navigator.clipboard.writeText(txt).then(()=>alert('Copiado!')).catch(()=>alert('Error al copiar'))}
-async function loadExams(){const area=document.getElementById('exams-list');try{const res=await fetch('/api/exams');const groups=await res.json();if(!groups.length){area.innerHTML='<div class="empty-state">No hay examenes.</div>';return}let h='';groups.forEach(g=>{const totalStu=g.students.length;const submitted=g.students.filter(s=>s.submissions&&s.submissions.length>0).length;h+='<div class="card" style="border-left:4px solid #4f46e5"><div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:8px"><div><h2 style="margin-bottom:4px">'+esc(g.name)+'</h2><p style="font-size:13px;color:#666">'+esc(g.subject)+' | '+g.variants.length+' variante(s) | '+g.time_limit+' min</p></div><button class="btn btn-sm btn-danger" onclick="deleteExam(\''+g.group_id+'\')">Eliminar</button></div><div style="display:flex;gap:16px;margin:12px 0;font-size:13px;flex-wrap:wrap"><div>Alumnos: <strong>'+totalStu+'</strong></div><div>Enviados: <strong>'+submitted+'</strong></div><div>Pendientes: <strong>'+(totalStu-submitted)+'</strong></div></div><h3 style="font-size:14px;margin:8px 0">Variantes:</h3><div class="table-wrap"><table><tr><th>Var</th><th>Contrasena</th><th>Preguntas</th><th>Puntos</th></tr>';g.variants.forEach(v=>{h+='<tr><td style="font-weight:700;font-size:15px">'+v.variant+'</td><td><code>'+esc(v.password)+'</code></td><td>'+v.questions.length+'</td><td>'+v.total_points+'</td></tr>'});h+='</table></div><h3 style="font-size:14px;margin:12px 0 8px">Alumnos:</h3><div class="table-wrap"><table><tr><th>#</th><th>ID</th><th>Estado</th><th>Var</th><th>Calif</th></tr>';g.students.forEach((st,j)=>{const sub=st.submissions&&st.submissions.length?st.submissions[0]:null;const status=sub?'<span class="badge badge-graded">Enviado</span>':'<span class="badge badge-pending">Pendiente</span>';const grade=sub?sub.final_grade.toFixed(1)+'%':'--';const varUsed=sub?sub.variant:'--';h+='<tr><td>'+(j+1)+'</td><td><code>'+esc(st.student_code)+'</code></td><td>'+status+'</td><td>'+varUsed+'</td><td style="font-weight:700">'+grade+'</td></tr>'});h+='</table></div></div>'});area.innerHTML=h}catch(e){area.innerHTML='<div class="empty-state">Error: '+e.message+'</div>'}}
-async function deleteExam(gid){if(!confirm('Eliminar este examen y todos sus datos?'))return;try{await fetch('/api/exams/'+gid,{method:'DELETE'});loadExams()}catch(e){alert('Error: '+e.message)}}
-async function loadGrades(){const area=document.getElementById('grades-area');try{const res=await fetch('/api/grades');const grades=await res.json();if(!grades.length){area.innerHTML='<div class="empty-state">No hay calificaciones.</div>';return}const submitted=grades.filter(g=>g.final_grade!==null);const avg=submitted.length?(submitted.reduce((s,g)=>s+g.final_grade,0)/submitted.length).toFixed(1):'0';const passing=submitted.filter(g=>g.final_grade>=70).length;let h='<div class="gs-grid"><div class="gs-card"><div class="gs-val">'+grades.length+'</div><div class="gs-lbl">Total</div></div><div class="gs-card"><div class="gs-val" style="color:#059669">'+submitted.length+'</div><div class="gs-lbl">Enviados</div></div><div class="gs-card"><div class="gs-val" style="color:#4f46e5">'+avg+'%</div><div class="gs-lbl">Promedio</div></div><div class="gs-card"><div class="gs-val" style="color:#059669">'+passing+'</div><div class="gs-lbl">Aprobados</div></div></div>';h+='<div class="table-wrap"><table><tr><th>#</th><th>ID</th><th>Examen</th><th>Var</th><th>Estado</th><th>Calif</th><th>Tiempo</th><th>Acciones</th></tr>';grades.forEach((g,i)=>{const status=g.final_grade!==null?'<span class="badge badge-graded">Calificado</span>':'<span class="badge badge-pending">Pendiente</span>';const grade=g.final_grade!==null?g.final_grade.toFixed(1)+'%':'--';const gs=g.final_grade!==null?(g.final_grade>=70?'color:#059669':g.final_grade>=50?'color:#d97706':'color:#dc2626'):'';const time=g.time_used?(Math.floor(g.time_used/60)+'m '+g.time_used%60+'s'):'--';const actions=g.final_grade!==null?'<button class="btn btn-sm btn-primary" onclick="showDetail('+g.student_id+','+g.exam_id+')">Ver</button> <button class="btn btn-sm btn-outline" onclick="generatePDF('+g.student_id+','+g.exam_id+')">PDF</button>':'';h+='<tr><td>'+(i+1)+'</td><td><code>'+esc(g.student_code)+'</code></td><td>'+esc(g.exam_name||'--')+'</td><td>'+(g.variant||'--')+'</td><td>'+status+'</td><td style="font-weight:700;'+gs+'">'+grade+'</td><td>'+time+'</td><td>'+actions+'</td></tr>'});h+='</table></div>';area.innerHTML=h}catch(e){area.innerHTML='<div class="empty-state">Error: '+e.message+'</div>'}}
-async function showDetail(sid,eid){try{const res=await fetch('/api/report/'+sid+'/'+eid);const d=await res.json();if(!res.ok){alert(d.error);return}const fg=d.final_grade,gc=fg>=70?'score-high':fg>=50?'score-mid':'score-low';const correct=d.results.filter(r=>r.correct).length;const m=Math.floor(d.time_used/60),s=d.time_used%60;let h='<div class="card" style="text-align:center"><div class="score-circle '+gc+'"><span class="score-num">'+fg.toFixed(0)+'</span><span class="score-label">de 100</span></div><h2 style="justify-content:center">ID: '+esc(d.student_code)+'</h2><p style="color:#666;font-size:13px">'+esc(d.exam_name)+' | Variante '+d.variant+' | '+esc(d.subject)+'</p><p style="font-size:14px;margin-top:8px">Aciertos: <strong>'+correct+'/'+d.results.length+'</strong> | Tiempo: <strong>'+m+'m '+s+'s</strong>'+(d.auto_submitted?' | Auto':'')+'</p></div>';h+='<div class="card"><h2>Respuestas</h2>';d.results.forEach(r=>{const badge=r.correct?'<span class="badge badge-correct">Correcto</span>':'<span class="badge badge-incorrect">Incorrecto</span>';h+='<div class="result-detail"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><strong>P'+r.num+'. '+esc(r.text)+'</strong>'+badge+'</div><p style="font-size:13px">Alumno: <strong>'+esc(r.studentAnswer)+'</strong></p><p style="font-size:13px">Correcta: <strong>'+esc(r.correctAnswer)+'</strong></p><p style="font-size:12px;color:#888">'+r.earned+'/'+r.points+' pts</p></div>'});if(d.studentFiles&&d.studentFiles.length){h+='<hr style="border:none;border-top:1px solid #e5e7eb;margin:16px 0"><h3 style="font-size:14px;margin-bottom:8px">Archivos entregados</h3>';d.studentFiles.forEach(f=>{const sz=f.file_size>1048576?(f.file_size/1048576).toFixed(1)+' MB':(f.file_size/1024).toFixed(0)+' KB';h+='<div class="file-info"><div style="font-size:18px">F</div><div class="fi-details"><div class="fi-name">'+esc(f.original_name)+'</div><div class="fi-size">'+sz+'</div></div><a href="/api/files/student/'+f.id+'" class="btn btn-sm btn-primary" download>Descargar</a></div>'})}h+='</div>';const ov=document.createElement('div');ov.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200;overflow-y:auto;padding:24px';ov.innerHTML='<div style="max-width:800px;margin:0 auto"><button class="btn btn-danger" onclick="this.closest(\'div[style]\').remove()" style="margin-bottom:12px">Cerrar</button>'+h+'</div>';document.body.appendChild(ov)}catch(e){alert('Error: '+e.message)}}
-function generatePDF(sid,eid){fetch('/api/report/'+sid+'/'+eid).then(r=>r.json()).then(d=>{const fg=d.final_grade;const correct=d.results.filter(r=>r.correct).length;const m=Math.floor(d.time_used/60),s=d.time_used%60;let html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Reporte - '+esc(d.student_code)+'</title><style>body{font-family:Arial,sans-serif;margin:40px;color:#1a1a2e;font-size:12px;line-height:1.5}h1{font-size:18px;border-bottom:2px solid #4f46e5;padding-bottom:8px}h2{font-size:14px;color:#4f46e5;margin-top:20px}.grade-box{text-align:center;padding:15px 25px;border:3px solid '+(fg>=70?'#059669':fg>=50?'#d97706':'#dc2626')+';border-radius:10px;color:'+(fg>=70?'#059669':fg>=50?'#d97706':'#dc2626')+';display:inline-block}.grade-box .num{font-size:36px;font-weight:700}table{width:100%;border-collapse:collapse;margin-top:10px}th{background:#f3f4f6;padding:8px;text-align:left;font-size:11px;border:1px solid #d1d5db}td{padding:8px;border:1px solid #d1d5db}.ok{background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:4px}.no{background:#fee2e2;color:#991b1b;padding:2px 8px;border-radius:4px}.footer{margin-top:30px;border-top:1px solid #e5e7eb;padding-top:10px;font-size:10px;color:#999;text-align:center}</style></head><body><div style="display:flex;justify-content:space-between;align-items:center"><div><h1>Reporte de Examen</h1><p><strong>ID:</strong> '+esc(d.student_code)+'</p><p><strong>Examen:</strong> '+esc(d.exam_name)+' | Variante '+d.variant+'</p><p><strong>Materia:</strong> '+esc(d.subject)+'</p><p><strong>Fecha:</strong> '+(d.submitted_at||'')+'</p></div><div class="grade-box"><div class="num">'+fg.toFixed(0)+'</div><div>de 100</div></div></div><p style="margin-top:12px"><strong>Aciertos:</strong> '+correct+'/'+d.results.length+' | <strong>Puntos:</strong> '+d.total_earned+'/'+d.total_points+' | <strong>Tiempo:</strong> '+m+'m '+s+'s'+(d.auto_submitted?' | Auto':'')+'</p>';if(d.problem_title){html+='<h2>Enunciado</h2><p><strong>'+esc(d.problem_title)+'</strong></p>';if(d.problem_description)html+='<p style="white-space:pre-wrap">'+esc(d.problem_description)+'</p>'}html+='<h2>Detalle</h2><table><tr><th>#</th><th>Pregunta</th><th>Alumno</th><th>Correcta</th><th>Pts</th><th>Resultado</th></tr>';d.results.forEach(r=>{html+='<tr><td>'+r.num+'</td><td>'+esc(r.text)+'</td><td>'+esc(r.studentAnswer)+'</td><td>'+esc(r.correctAnswer)+'</td><td>'+r.earned+'/'+r.points+'</td><td>'+(r.correct?'<span class="ok">Correcto</span>':'<span class="no">Incorrecto</span>')+'</td></tr>'});html+='</table><div class="footer">Sistema de Examenes | Generado automaticamente</div></body></html>';const w=window.open('','_blank');w.document.write(html);w.document.close();setTimeout(()=>w.print(),500)}).catch(e=>alert('Error: '+e.message))}
+// ============================================
+// ESTADO GLOBAL
+// ============================================
+var variants = [];
+var studentCodes = [];
+
+function esc(s) {
+  if (!s) return '';
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+// ============================================
+// NAVEGACION
+// ============================================
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.topbar-nav button').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  if (id === 'lista') loadExams();
+  if (id === 'calificaciones') loadGrades();
+}
+
+// ============================================
+// VARIANTES
+// ============================================
+function addVariant() {
+  if (variants.length >= 26) {
+    alert('Maximo 26 variantes.');
+    return;
+  }
+  var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  var used = variants.map(function(v) { return v.variant; });
+  var next = letters.find(function(l) { return used.indexOf(l) === -1; });
+  if (!next) return;
+  variants.push({
+    variant: next,
+    password: '',
+    problemTitle: '',
+    problemDescription: '',
+    questions: [],
+    files: []
+  });
+  renderVariants();
+}
+
+function removeVariant(i) {
+  variants.splice(i, 1);
+  renderVariants();
+}
+
+function addVarQ(vi, type) {
+  var num = variants[vi].questions.length + 1;
+  var q = {
+    num: num,
+    type: type,
+    text: '',
+    points: 10,
+    answer: type === 'vf' ? 'Verdadero' : type === 'numerica' ? 0 : 'A',
+    options: type === 'multiple' ? { A: '', B: '', C: '', D: '' } : null
+  };
+  variants[vi].questions.push(q);
+  renderVariants();
+}
+
+function removeVarQ(vi, qi) {
+  variants[vi].questions.splice(qi, 1);
+  variants[vi].questions.forEach(function(q, j) { q.num = j + 1; });
+  renderVariants();
+}
+
+function varFileSelect(e, vi) {
+  Array.from(e.target.files).forEach(function(f) { variants[vi].files.push(f); });
+  renderVariants();
+}
+
+function removeVarFile(vi, fi) {
+  variants[vi].files.splice(fi, 1);
+  renderVariants();
+}
+
+function renderVariants() {
+  document.getElementById('var-count').textContent = variants.length + ' variante(s)';
+  var c = document.getElementById('variants-container');
+
+  if (!variants.length) {
+    c.innerHTML = '<div class="empty-state">Agrega al menos una variante.</div>';
+    return;
+  }
+
+  var TL = {
+    numerica: { label: 'Numerica', cls: 'q-type-numerica' },
+    multiple: { label: 'Opcion Mult.', cls: 'q-type-multiple' },
+    vf: { label: 'V/F', cls: 'q-type-vf' }
+  };
+
+  var html = '';
+  for (var vi = 0; vi < variants.length; vi++) {
+    var v = variants[vi];
+    html += '<div class="var-section">';
+    html += '<div class="var-header">';
+    html += '<span style="background:#4f46e5;color:#fff;padding:2px 10px;border-radius:6px;font-size:16px">' + v.variant + '</span>';
+    html += ' Variante ' + v.variant;
+    html += '<button class="btn btn-sm btn-danger" style="margin-left:auto" onclick="removeVariant(' + vi + ')">Eliminar</button>';
+    html += '</div>';
+
+    html += '<div class="form-group">';
+    html += '<label>Contrasena Variante ' + v.variant + '</label>';
+    html += '<input type="text" value="' + esc(v.password) + '" onchange="variants[' + vi + '].password=this.value" placeholder="Contrasena para variante ' + v.variant + '">';
+    html += '</div>';
+
+    html += '<div class="form-group">';
+    html += '<label>Titulo del Problema</label>';
+    html += '<input type="text" value="' + esc(v.problemTitle) + '" onchange="variants[' + vi + '].problemTitle=this.value" placeholder="Titulo del enunciado">';
+    html += '</div>';
+    html += '<div class="form-group">';
+    html += '<label>Enunciado</label>';
+    html += '<textarea onchange="variants[' + vi + '].problemDescription=this.value" rows="3" placeholder="Enunciado del problema...">' + esc(v.problemDescription) + '</textarea>';
+    html += '</div>';
+
+    html += '<div class="form-group">';
+    html += '<label>Archivos Variante ' + v.variant + '</label>';
+    html += '<div class="file-upload-zone' + (v.files && v.files.length ? ' has-files' : '') + '" onclick="document.getElementById(\'vfile-' + vi + '\').click()">';
+    html += '<input type="file" id="vfile-' + vi + '" style="display:none" multiple onchange="varFileSelect(event,' + vi + ')">';
+    html += '<p style="color:#666">Haz clic para subir archivos</p>';
+    html += '</div>';
+    if (v.files && v.files.length) {
+      for (var fi = 0; fi < v.files.length; fi++) {
+        var f = v.files[fi];
+        var sz = f.size > 1048576 ? (f.size / 1048576).toFixed(1) + ' MB' : (f.size / 1024).toFixed(0) + ' KB';
+        html += '<div class="file-info">';
+        html += '<div class="fi-details"><div class="fi-name">' + esc(f.name) + '</div><div class="fi-size">' + sz + '</div></div>';
+        html += '<button class="btn btn-sm btn-danger" onclick="removeVarFile(' + vi + ',' + fi + ')">X</button>';
+        html += '</div>';
+      }
+    }
+    html += '</div>';
+
+    html += '<label style="display:block;font-size:12px;font-weight:600;color:#555;text-transform:uppercase;margin:12px 0 8px">Preguntas Variante ' + v.variant + '</label>';
+
+    if (v.questions.length) {
+      for (var qi = 0; qi < v.questions.length; qi++) {
+        var q = v.questions[qi];
+        var tl = TL[q.type] || TL.numerica;
+
+        html += '<div class="q-block">';
+        html += '<button class="btn btn-sm btn-danger" style="position:absolute;top:6px;right:6px;padding:2px 8px" onclick="removeVarQ(' + vi + ',' + qi + ')">X</button>';
+        html += '<div class="q-num">P' + q.num + ' <span class="q-type-tag ' + tl.cls + '">' + tl.label + '</span></div>';
+
+        html += '<div class="form-row" style="margin-top:6px">';
+        html += '<div class="form-group"><label>Pregunta</label>';
+        html += '<textarea onchange="variants[' + vi + '].questions[' + qi + '].text=this.value" rows="2" placeholder="Texto...">' + esc(q.text) + '</textarea></div>';
+        html += '<div class="form-group"><label>Puntos</label>';
+        html += '<input type="number" value="' + q.points + '" min="1" onchange="variants[' + vi + '].questions[' + qi + '].points=parseFloat(this.value)||0"></div>';
+        html += '</div>';
+
+        html += '<div style="margin-top:8px;padding:10px;background:#f0f2f5;border-radius:6px">';
+        html += '<label style="font-size:11px;font-weight:700;color:#4f46e5;text-transform:uppercase;margin-bottom:6px;display:block">Respuesta Correcta</label>';
+
+        if (q.type === 'numerica') {
+          html += '<input type="number" step="any" value="' + q.answer + '" onchange="variants[' + vi + '].questions[' + qi + '].answer=parseFloat(this.value)||0" placeholder="Valor numerico">';
+        } else if (q.type === 'multiple') {
+          html += '<div class="form-group" style="margin-bottom:6px"><label>A</label><input type="text" value="' + esc(q.options.A) + '" onchange="variants[' + vi + '].questions[' + qi + '].options.A=this.value"></div>';
+          html += '<div class="form-group" style="margin-bottom:6px"><label>B</label><input type="text" value="' + esc(q.options.B) + '" onchange="variants[' + vi + '].questions[' + qi + '].options.B=this.value"></div>';
+          html += '<div class="form-group" style="margin-bottom:6px"><label>C</label><input type="text" value="' + esc(q.options.C) + '" onchange="variants[' + vi + '].questions[' + qi + '].options.C=this.value"></div>';
+          html += '<div class="form-group" style="margin-bottom:6px"><label>D</label><input type="text" value="' + esc(q.options.D) + '" onchange="variants[' + vi + '].questions[' + qi + '].options.D=this.value"></div>';
+          html += '<div class="form-group"><label>Correcta</label><select onchange="variants[' + vi + '].questions[' + qi + '].answer=this.value">';
+          html += '<option value="A"' + (q.answer === 'A' ? ' selected' : '') + '>A</option>';
+          html += '<option value="B"' + (q.answer === 'B' ? ' selected' : '') + '>B</option>';
+          html += '<option value="C"' + (q.answer === 'C' ? ' selected' : '') + '>C</option>';
+          html += '<option value="D"' + (q.answer === 'D' ? ' selected' : '') + '>D</option>';
+          html += '</select></div>';
+        } else {
+          html += '<select onchange="variants[' + vi + '].questions[' + qi + '].answer=this.value">';
+          html += '<option value="Verdadero"' + (q.answer === 'Verdadero' ? ' selected' : '') + '>Verdadero</option>';
+          html += '<option value="Falso"' + (q.answer === 'Falso' ? ' selected' : '') + '>Falso</option>';
+          html += '</select>';
+        }
+        html += '</div>';
+        html += '</div>';
+      }
+    } else {
+      html += '<div style="text-align:center;padding:10px;color:#999;font-size:13px">Sin preguntas</div>';
+    }
+
+    html += '<div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">';
+    html += '<button class="btn btn-sm btn-outline" onclick="addVarQ(' + vi + ',\'numerica\')">+ Numerica</button>';
+    html += '<button class="btn btn-sm btn-outline" onclick="addVarQ(' + vi + ',\'multiple\')">+ Opcion Mult.</button>';
+    html += '<button class="btn btn-sm btn-outline" onclick="addVarQ(' + vi + ',\'vf\')">+ V/F</button>';
+    html += '</div>';
+
+    html += '</div>';
+  }
+  c.innerHTML = html;
+}
+
+// ============================================
+// ALUMNOS
+// ============================================
+function parseStudents() {
+  var raw = document.getElementById('students-paste').value.trim();
+  if (!raw) { alert('Pega la lista de IDs.'); return; }
+  studentCodes = raw.split('\n').map(function(l) { return l.trim(); }).filter(function(l) { return l.length > 0; });
+  studentCodes = studentCodes.filter(function(v, i, a) { return a.indexOf(v) === i; });
+  document.getElementById('student-count').textContent = studentCodes.length + ' alumnos';
+  renderStudents();
+}
+
+function removeStu(i) {
+  studentCodes.splice(i, 1);
+  document.getElementById('student-count').textContent = studentCodes.length + ' alumnos';
+  renderStudents();
+}
+
+function renderStudents() {
+  var el = document.getElementById('students-preview');
+  if (!studentCodes.length) { el.innerHTML = ''; return; }
+  var h = '<div class="table-wrap"><table><tr><th>#</th><th>ID / Matricula</th><th></th></tr>';
+  for (var i = 0; i < studentCodes.length; i++) {
+    h += '<tr><td>' + (i + 1) + '</td><td><code>' + esc(studentCodes[i]) + '</code></td>';
+    h += '<td><button class="btn btn-sm btn-danger" onclick="removeStu(' + i + ')">X</button></td></tr>';
+  }
+  h += '</table></div>';
+  el.innerHTML = h;
+}
+
+// ============================================
+// CREAR EXAMEN
+// ============================================
+async function createExam() {
+  var name = document.getElementById('ex-name').value.trim();
+  if (!name) { alert('Nombre del examen requerido.'); return; }
+  if (!variants.length) { alert('Agrega al menos una variante.'); return; }
+
+  for (var i = 0; i < variants.length; i++) {
+    if (!variants[i].password.trim()) {
+      alert('Variante ' + variants[i].variant + ' sin contrasena.');
+      return;
+    }
+    if (!variants[i].questions.length) {
+      alert('Variante ' + variants[i].variant + ' sin preguntas.');
+      return;
+    }
+    for (var j = 0; j < variants[i].questions.length; j++) {
+      if (!variants[i].questions[j].text.trim()) {
+        alert('Variante ' + variants[i].variant + ', pregunta ' + (j + 1) + ' sin texto.');
+        return;
+      }
+    }
+  }
+  if (!studentCodes.length) { alert('Agrega al menos un alumno.'); return; }
+
+  var btn = document.getElementById('btn-create');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Creando...';
+
+  var fd = new FormData();
+  fd.append('name', name);
+  fd.append('subject', document.getElementById('ex-subject').value.trim() || 'Simulacion');
+  fd.append('tolerance', document.getElementById('ex-tolerance').value || '2');
+  fd.append('timeLimit', document.getElementById('ex-time').value || '60');
+  fd.append('examDate', document.getElementById('ex-date').value || '');
+  fd.append('studentCodes', JSON.stringify(studentCodes));
+
+  var varData = variants.map(function(v) {
+    return {
+      variant: v.variant,
+      password: v.password,
+      problemTitle: v.problemTitle,
+      problemDescription: v.problemDescription,
+      questions: v.questions
+    };
+  });
+  fd.append('variants', JSON.stringify(varData));
+
+  variants.forEach(function(v) {
+    if (v.files) {
+      v.files.forEach(function(f) {
+        var renamed = new File([f], 'VAR_' + v.variant + '_' + f.name, { type: f.type });
+        fd.append('baseFiles', renamed);
+      });
+    }
+  });
+
+  try {
+    var res = await fetch('/api/exams', { method: 'POST', body: fd });
+    var data = await res.json();
+    if (!res.ok) {
+      alert('Error: ' + (data.error || 'Intenta de nuevo'));
+      btn.disabled = false;
+      btn.innerHTML = 'Crear Examen';
+      return;
+    }
+
+    var rh = '<div class="alert alert-success">Examen creado exitosamente!</div>';
+    rh += '<div class="card"><h2>Resumen</h2>';
+    rh += '<p style="font-size:13px;margin-bottom:8px">Liga para alumnos:</p>';
+    rh += '<div style="background:#f3f4f6;padding:10px;border-radius:8px;font-family:monospace;font-size:14px;margin-bottom:12px;word-break:break-all">' + window.location.origin + '/alumno</div>';
+    rh += '<h3 style="font-size:14px;margin:12px 0 8px">Contrasenas por variante:</h3>';
+    rh += '<div class="table-wrap"><table><tr><th>Variante</th><th>Contrasena</th></tr>';
+    data.variants.forEach(function(v) {
+      rh += '<tr><td style="font-weight:700;font-size:16px">' + v.variant + '</td>';
+      rh += '<td><code style="background:#eef2ff;padding:2px 10px;border-radius:4px;font-size:15px;font-weight:700">' + esc(v.password) + '</code></td></tr>';
+    });
+    rh += '</table></div>';
+    rh += '<p style="margin-top:8px;font-size:13px">Alumnos registrados: ' + data.students.length + '</p>';
+    rh += '<button class="btn btn-primary" style="margin-top:8px" onclick="copyInfo()">Copiar Info</button>';
+    rh += '</div>';
+
+    document.getElementById('create-result').innerHTML = rh;
+    window._createdInfo = { url: window.location.origin + '/alumno', variants: data.variants, students: data.students };
+
+    variants = [];
+    studentCodes = [];
+    document.getElementById('ex-name').value = '';
+    document.getElementById('students-paste').value = '';
+    document.getElementById('student-count').textContent = '0 alumnos';
+    document.getElementById('students-preview').innerHTML = '';
+    renderVariants();
+    btn.disabled = false;
+    btn.innerHTML = 'Crear Examen';
+  } catch (e) {
+    alert('Error: ' + e.message);
+    btn.disabled = false;
+    btn.innerHTML = 'Crear Examen';
+  }
+}
+
+function copyInfo() {
+  if (!window._createdInfo) return;
+  var info = window._createdInfo;
+  var txt = 'EXAMEN - Liga: ' + info.url + '\n\nCONTRASENAS:\n';
+  info.variants.forEach(function(v) {
+    txt += 'Variante ' + v.variant + ': ' + v.password + '\n';
+  });
+  txt += '\nALUMNOS: ' + info.students.length + ' registrados\n';
+  navigator.clipboard.writeText(txt).then(function() { alert('Copiado al portapapeles!'); }).catch(function() { alert('Error al copiar'); });
+}
+
+// ============================================
+// LISTA DE EXAMENES
+// ============================================
+async function loadExams() {
+  var area = document.getElementById('exams-list');
+  try {
+    var res = await fetch('/api/exams');
+    var groups = await res.json();
+    if (!groups.length) {
+      area.innerHTML = '<div class="empty-state">No hay examenes creados.</div>';
+      return;
+    }
+
+    var h = '';
+    groups.forEach(function(g) {
+      var totalStu = g.students.length;
+      var submitted = g.students.filter(function(s) { return s.submissions && s.submissions.length > 0; }).length;
+
+      h += '<div class="card" style="border-left:4px solid #4f46e5">';
+      h += '<div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:8px">';
+      h += '<div><h2 style="margin-bottom:4px">' + esc(g.name) + '</h2>';
+      h += '<p style="font-size:13px;color:#666">' + esc(g.subject) + ' | ' + g.variants.length + ' variante(s) | ' + g.time_limit + ' min</p></div>';
+      h += '<button class="btn btn-sm btn-danger" onclick="deleteExam(\'' + g.group_id + '\')">Eliminar</button></div>';
+
+      h += '<div style="display:flex;gap:16px;margin:12px 0;font-size:13px;flex-wrap:wrap">';
+      h += '<div>Alumnos: <strong>' + totalStu + '</strong></div>';
+      h += '<div>Enviados: <strong>' + submitted + '</strong></div>';
+      h += '<div>Pendientes: <strong>' + (totalStu - submitted) + '</strong></div></div>';
+
+      h += '<h3 style="font-size:14px;margin:8px 0">Variantes:</h3>';
+      h += '<div class="table-wrap"><table><tr><th>Var</th><th>Contrasena</th><th>Preguntas</th><th>Puntos</th></tr>';
+      g.variants.forEach(function(v) {
+        h += '<tr><td style="font-weight:700;font-size:15px">' + v.variant + '</td>';
+        h += '<td><code>' + esc(v.password) + '</code></td>';
+        h += '<td>' + v.questions.length + '</td>';
+        h += '<td>' + v.total_points + '</td></tr>';
+      });
+      h += '</table></div>';
+
+      h += '<h3 style="font-size:14px;margin:12px 0 8px">Alumnos:</h3>';
+      h += '<div class="table-wrap"><table><tr><th>#</th><th>ID</th><th>Estado</th><th>Var</th><th>Calif</th></tr>';
+      g.students.forEach(function(st, j) {
+        var sub = st.submissions && st.submissions.length ? st.submissions[0] : null;
+        var status = sub ? '<span class="badge badge-graded">Enviado</span>' : '<span class="badge badge-pending">Pendiente</span>';
+        var grade = sub ? sub.final_grade.toFixed(1) + '%' : '--';
+        var varUsed = sub ? sub.variant : '--';
+        h += '<tr><td>' + (j + 1) + '</td><td><code>' + esc(st.student_code) + '</code></td>';
+        h += '<td>' + status + '</td><td>' + varUsed + '</td>';
+        h += '<td style="font-weight:700">' + grade + '</td></tr>';
+      });
+      h += '</table></div></div>';
+    });
+
+    area.innerHTML = h;
+  } catch (e) {
+    area.innerHTML = '<div class="empty-state">Error: ' + e.message + '</div>';
+  }
+}
+
+async function deleteExam(gid) {
+  if (!confirm('Eliminar este examen y todos sus datos?')) return;
+  try {
+    await fetch('/api/exams/' + gid, { method: 'DELETE' });
+    loadExams();
+  } catch (e) {
+    alert('Error: ' + e.message);
+  }
+}
+
+// ============================================
+// CALIFICACIONES
+// ============================================
+async function loadGrades() {
+  var area = document.getElementById('grades-area');
+  try {
+    var res = await fetch('/api/grades');
+    var grades = await res.json();
+    if (!grades.length) {
+      area.innerHTML = '<div class="empty-state">No hay calificaciones.</div>';
+      return;
+    }
+
+    var submitted = grades.filter(function(g) { return g.final_grade !== null; });
+    var avg = submitted.length ? (submitted.reduce(function(s, g) { return s + g.final_grade; }, 0) / submitted.length).toFixed(1) : '0';
+    var passing = submitted.filter(function(g) { return g.final_grade >= 70; }).length;
+
+    var h = '<div class="gs-grid">';
+    h += '<div class="gs-card"><div class="gs-val">' + grades.length + '</div><div class="gs-lbl">Total</div></div>';
+    h += '<div class="gs-card"><div class="gs-val" style="color:#059669">' + submitted.length + '</div><div class="gs-lbl">Enviados</div></div>';
+    h += '<div class="gs-card"><div class="gs-val" style="color:#4f46e5">' + avg + '%</div><div class="gs-lbl">Promedio</div></div>';
+    h += '<div class="gs-card"><div class="gs-val" style="color:#059669">' + passing + '</div><div class="gs-lbl">Aprobados</div></div>';
+    h += '</div>';
+
+    h += '<div class="table-wrap"><table>';
+    h += '<tr><th>#</th><th>ID</th><th>Examen</th><th>Var</th><th>Estado</th><th>Calif</th><th>Tiempo</th><th>Acciones</th></tr>';
+    grades.forEach(function(g, i) {
+      var status = g.final_grade !== null ? '<span class="badge badge-graded">Calificado</span>' : '<span class="badge badge-pending">Pendiente</span>';
+      var grade = g.final_grade !== null ? g.final_grade.toFixed(1) + '%' : '--';
+      var gs = g.final_grade !== null ? (g.final_grade >= 70 ? 'color:#059669' : g.final_grade >= 50 ? 'color:#d97706' : 'color:#dc2626') : '';
+      var time = g.time_used ? (Math.floor(g.time_used / 60) + 'm ' + g.time_used % 60 + 's') : '--';
+      var actions = g.final_grade !== null ? '<button class="btn btn-sm btn-primary" onclick="showDetail(' + g.student_id + ',' + g.exam_id + ')">Ver</button> <button class="btn btn-sm btn-outline" onclick="generatePDF(' + g.student_id + ',' + g.exam_id + ')">PDF</button>' : '';
+      h += '<tr><td>' + (i + 1) + '</td>';
+      h += '<td><code>' + esc(g.student_code) + '</code></td>';
+      h += '<td>' + esc(g.exam_name || '--') + '</td>';
+      h += '<td>' + (g.variant || '--') + '</td>';
+      h += '<td>' + status + '</td>';
+      h += '<td style="font-weight:700;' + gs + '">' + grade + '</td>';
+      h += '<td>' + time + '</td>';
+      h += '<td>' + actions + '</td></tr>';
+    });
+    h += '</table></div>';
+
+    area.innerHTML = h;
+  } catch (e) {
+    area.innerHTML = '<div class="empty-state">Error: ' + e.message + '</div>';
+  }
+}
+
+// ============================================
+// DETALLE ALUMNO
+// ============================================
+async function showDetail(sid, eid) {
+  try {
+    var res = await fetch('/api/report/' + sid + '/' + eid);
+    var d = await res.json();
+    if (!res.ok) { alert(d.error); return; }
+
+    var fg = d.final_grade;
+    var gc = fg >= 70 ? 'score-high' : fg >= 50 ? 'score-mid' : 'score-low';
+    var correct = d.results.filter(function(r) { return r.correct; }).length;
+    var m = Math.floor(d.time_used / 60);
+    var s = d.time_used % 60;
+
+    var h = '<div class="card" style="text-align:center">';
+    h += '<div class="score-circle ' + gc + '">';
+    h += '<span class="score-num">' + fg.toFixed(0) + '</span>';
+    h += '<span class="score-label">de 100</span></div>';
+    h += '<h2 style="justify-content:center">ID: ' + esc(d.student_code) + '</h2>';
+    h += '<p style="color:#666;font-size:13px">' + esc(d.exam_name) + ' | Variante ' + d.variant + ' | ' + esc(d.subject) + '</p>';
+    h += '<p style="font-size:14px;margin-top:8px">Aciertos: <strong>' + correct + '/' + d.results.length + '</strong> | Tiempo: <strong>' + m + 'm ' + s + 's</strong>';
+    if (d.auto_submitted) h += ' | Auto';
+    h += '</p></div>';
+
+    h += '<div class="card"><h2>Respuestas</h2>';
+    d.results.forEach(function(r) {
+      var badge = r.correct ? '<span class="badge badge-correct">Correcto</span>' : '<span class="badge badge-incorrect">Incorrecto</span>';
+      h += '<div class="result-detail">';
+      h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">';
+      h += '<strong>P' + r.num + '. ' + esc(r.text) + '</strong>' + badge + '</div>';
+      h += '<p style="font-size:13px">Alumno: <strong>' + esc(r.studentAnswer) + '</strong></p>';
+      h += '<p style="font-size:13px">Correcta: <strong>' + esc(r.correctAnswer) + '</strong></p>';
+      h += '<p style="font-size:12px;color:#888">' + r.earned + '/' + r.points + ' pts</p>';
+      h += '</div>';
+    });
+
+    if (d.studentFiles && d.studentFiles.length) {
+      h += '<hr style="border:none;border-top:1px solid #e5e7eb;margin:16px 0">';
+      h += '<h3 style="font-size:14px;margin-bottom:8px">Archivos entregados</h3>';
+      d.studentFiles.forEach(function(f) {
+        var sz = f.file_size > 1048576 ? (f.file_size / 1048576).toFixed(1) + ' MB' : (f.file_size / 1024).toFixed(0) + ' KB';
+        h += '<div class="file-info">';
+        h += '<div class="fi-details"><div class="fi-name">' + esc(f.original_name) + '</div><div class="fi-size">' + sz + '</div></div>';
+        h += '<a href="/api/files/student/' + f.id + '" class="btn btn-sm btn-primary" download>Descargar</a>';
+        h += '</div>';
+      });
+    }
+    h += '</div>';
+
+    var ov = document.createElement('div');
+    ov.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200;overflow-y:auto;padding:24px';
+    ov.innerHTML = '<div style="max-width:800px;margin:0 auto"><button class="btn btn-danger" onclick="this.parentElement.parentElement.remove()" style="margin-bottom:12px">Cerrar</button>' + h + '</div>';
+    document.body.appendChild(ov);
+  } catch (e) {
+    alert('Error: ' + e.message);
+  }
+}
+
+// ============================================
+// GENERAR PDF
+// ============================================
+function generatePDF(sid, eid) {
+  fetch('/api/report/' + sid + '/' + eid)
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      var fg = d.final_grade;
+      var correct = d.results.filter(function(r) { return r.correct; }).length;
+      var m = Math.floor(d.time_used / 60);
+      var s = d.time_used % 60;
+      var gc = fg >= 70 ? '#059669' : fg >= 50 ? '#d97706' : '#dc2626';
+
+      var html = '<!DOCTYPE html><html><head><meta charset="UTF-8">';
+      html += '<title>Reporte - ' + esc(d.student_code) + '</title>';
+      html += '<style>';
+      html += 'body{font-family:Arial,sans-serif;margin:40px;color:#1a1a2e;font-size:12px;line-height:1.5}';
+      html += 'h1{font-size:18px;border-bottom:2px solid #4f46e5;padding-bottom:8px}';
+      html += 'h2{font-size:14px;color:#4f46e5;margin-top:20px}';
+      html += '.grade-box{text-align:center;padding:15px 25px;border:3px solid ' + gc + ';border-radius:10px;color:' + gc + ';display:inline-block}';
+      html += '.grade-box .num{font-size:36px;font-weight:700}';
+      html += 'table{width:100%;border-collapse:collapse;margin-top:10px}';
+      html += 'th{background:#f3f4f6;padding:8px;text-align:left;font-size:11px;border:1px solid #d1d5db}';
+      html += 'td{padding:8px;border:1px solid #d1d5db}';
+      html += '.ok{background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:4px}';
+      html += '.no{background:#fee2e2;color:#991b1b;padding:2px 8px;border-radius:4px}';
+      html += '.footer{margin-top:30px;border-top:1px solid #e5e7eb;padding-top:10px;font-size:10px;color:#999;text-align:center}';
+      html += '</style></head><body>';
+
+      html += '<div style="display:flex;justify-content:space-between;align-items:center"><div>';
+      html += '<h1>Reporte de Examen</h1>';
+      html += '<p><strong>ID:</strong> ' + esc(d.student_code) + '</p>';
+      html += '<p><strong>Examen:</strong> ' + esc(d.exam_name) + ' | Variante ' + d.variant + '</p>';
+      html += '<p><strong>Materia:</strong> ' + esc(d.subject) + '</p>';
+      html += '<p><strong>Fecha:</strong> ' + (d.submitted_at || '') + '</p>';
+      html += '</div>';
+      html += '<div class="grade-box"><div class="num">' + fg.toFixed(0) + '</div><div>de 100</div></div></div>';
+
+      html += '<p style="margin-top:12px"><strong>Aciertos:</strong> ' + correct + '/' + d.results.length;
+      html += ' | <strong>Puntos:</strong> ' + d.total_earned + '/' + d.total_points;
+      html += ' | <strong>Tiempo:</strong> ' + m + 'm ' + s + 's';
+      if (d.auto_submitted) html += ' | Envio automatico';
+      html += '</p>';
+
+      if (d.problem_title) {
+        html += '<h2>Enunciado</h2>';
+        html += '<p><strong>' + esc(d.problem_title) + '</strong></p>';
+        if (d.problem_description) {
+          html += '<p style="white-space:pre-wrap">' + esc(d.problem_description) + '</p>';
+        }
+      }
+
+      html += '<h2>Detalle de Respuestas</h2>';
+      html += '<table><tr><th>#</th><th>Pregunta</th><th>Alumno</th><th>Correcta</th><th>Pts</th><th>Resultado</th></tr>';
+      d.results.forEach(function(r) {
+        html += '<tr><td>' + r.num + '</td>';
+        html += '<td>' + esc(r.text) + '</td>';
+        html += '<td>' + esc(r.studentAnswer) + '</td>';
+        html += '<td>' + esc(r.correctAnswer) + '</td>';
+        html += '<td>' + r.earned + '/' + r.points + '</td>';
+        html += '<td>' + (r.correct ? '<span class="ok">Correcto</span>' : '<span class="no">Incorrecto</span>') + '</td></tr>';
+      });
+      html += '</table>';
+
+      html += '<div class="footer">Sistema de Examenes | Generado automaticamente</div>';
+      html += '</body></html>';
+
+      var w = window.open('', '_blank');
+      w.document.write(html);
+      w.document.close();
+      setTimeout(function() { w.print(); }, 500);
+    })
+    .catch(function(e) { alert('Error: ' + e.message); });
+}
+
+// ============================================
+// INIT
+// ============================================
 renderVariants();
 </script>
 </body>
