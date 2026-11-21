@@ -81,6 +81,13 @@ db.exec(`
     student_code TEXT NOT NULL,
     status TEXT DEFAULT 'pendiente'
   );
+  CREATE TABLE IF NOT EXISTS attempts (
+    student_id INTEGER NOT NULL,
+    exam_id INTEGER NOT NULL,
+    started_at INTEGER NOT NULL,
+    PRIMARY KEY (student_id, exam_id)
+  );
+
   CREATE TABLE IF NOT EXISTS submissions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     student_id INTEGER NOT NULL,
@@ -233,6 +240,11 @@ app.post('/api/student/login', (req, res) => {
     const existingSub = db.prepare('SELECT id FROM submissions WHERE student_id=? AND exam_id=?').get(student.id, exam.id);
     if (existingSub) return res.status(403).json({ error: 'Ya enviaste este examen (variante ' + variant + '). No puedes entrar de nuevo.' });
 
+    // Hora de inicio en el servidor: sobrevive a recargas y cierres del navegador
+    db.prepare('INSERT OR IGNORE INTO attempts (student_id,exam_id,started_at) VALUES (?,?,?)').run(student.id, exam.id, Date.now());
+    const attempt = db.prepare('SELECT started_at FROM attempts WHERE student_id=? AND exam_id=?').get(student.id, exam.id);
+    const remainingSeconds = Math.max(0, Math.floor(exam.time_limit * 60 - (Date.now() - attempt.started_at) / 1000));
+
     const files = db.prepare('SELECT id,original_name,stored_name,file_size FROM exam_files WHERE exam_id=?').all(exam.id);
 
     res.json({
@@ -244,6 +256,7 @@ app.post('/api/student/login', (req, res) => {
       variant: exam.variant,
       tolerance: exam.tolerance,
       timeLimit: exam.time_limit,
+      remainingSeconds,
       problemTitle: exam.problem_title,
       problemDescription: exam.problem_description,
       questions: JSON.parse(exam.questions),
