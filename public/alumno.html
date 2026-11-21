@@ -198,7 +198,7 @@ function showExam(){
   document.getElementById('login-section').style.display='none';
   const sec=document.getElementById('exam-section');
   sec.style.display='block';
-  startTimer(examData.timeLimit,examData.examName+' - Var '+examData.variant);
+  startTimer(examData.timeLimit,examData.examName+' - Var '+examData.variant,examData.remainingSeconds);
 
   let h='<div class="exam-header"><h2>'+esc(examData.examName)+' — Variante '+examData.variant+'</h2><p>'+esc(examData.subject)+' | '+examData.questions.length+' preguntas | '+examData.totalPoints+' pts | '+examData.timeLimit+' min</p><p style="margin-top:6px;font-size:12px;opacity:.7">ID: '+esc(examData.studentCode)+'</p></div>';
 
@@ -237,6 +237,26 @@ function showExam(){
 
   h+='<button class="btn btn-success btn-block" id="btn-submit" onclick="doSubmit(false)" style="font-size:16px;padding:14px;margin-bottom:40px">Enviar Examen</button>';
   sec.innerHTML=h;
+  restoreProgress();
+  sec.addEventListener('input',saveProgress);sec.addEventListener('change',saveProgress);
+  saveInterval=setInterval(saveProgress,5000);
+  if(examData.remainingSeconds<=0)setTimeout(()=>{if(!autoSubmitted){autoSubmitted=true;alert('Tiempo agotado! Tu examen se enviara automaticamente.');doSubmit(true)}},300);
+}
+
+// Autoguardado local
+let saveInterval=null;
+function pk(){return 'examen_'+examData.studentId+'_'+examData.examId}
+function saveProgress(){
+  if(submitting||!examData)return;
+  try{localStorage.setItem(pk(),JSON.stringify(examData.questions.map((q,i)=>{
+    if(q.type==='numerica'){const v=document.getElementById('ans-'+i);return v?v.value:''}
+    const ch=document.querySelector('input[name="ans-'+i+'"]:checked');return ch?ch.value:null})))}catch(e){}
+}
+function restoreProgress(){
+  try{const saved=JSON.parse(localStorage.getItem(pk())||'null');if(!saved)return;
+    examData.questions.forEach((q,i)=>{const v=saved[i];if(v===null||v===undefined||v==='')return;
+      if(q.type==='numerica'){const el=document.getElementById('ans-'+i);if(el)el.value=v}
+      else{const r=document.querySelector('input[name="ans-'+i+'"][value="'+v+'"]');if(r){r.checked=true;const l=r.closest('label');if(l)l.classList.add('selected')}}})}catch(e){}
 }
 
 // Files
@@ -254,8 +274,8 @@ function renderFiles(){
 }
 
 // Timer
-function startTimer(min,name){
-  timerTotal=min*60;timerRemain=timerTotal;autoSubmitted=false;
+function startTimer(min,name,remaining){
+  timerTotal=min*60;timerRemain=(remaining===undefined?timerTotal:Math.min(remaining,timerTotal));autoSubmitted=false;
   document.getElementById('timer-bar').style.display='flex';
   document.getElementById('timer-exam-name').textContent=name;
   updT();
@@ -307,6 +327,7 @@ async function doSubmit(auto){
     const res=await fetch('/api/student/submit',{method:'POST',body:fd});
     const data=await res.json();
     if(!res.ok){alert('Error: '+(data.error||'Intenta de nuevo.'));submitting=false;if(btn){btn.disabled=false;btn.innerHTML='Enviar Examen';}return}
+    clearInterval(saveInterval);try{localStorage.removeItem(pk())}catch(e){}
     showResult(data,timeUsed,auto);
   }catch(e){alert('Error de conexion.');submitting=false;if(btn){btn.disabled=false;btn.innerHTML='Enviar Examen';}}
 }
